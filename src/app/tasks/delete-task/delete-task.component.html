@@ -1,0 +1,19 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Delete Task</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h3>Are you sure, you want to delete?</h3>
+      <p>Quote ID: {{ task.QuoteID }}</p>
+      <p>Quote Type: {{ task.QuoteType }}</p>
+      <p>Task Type: {{ task.TaskType }}</p>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn taskButton btn-sm" (click)="submitDeleteTask(task.QuoteID); modal.close('Save click')"><i class="fa fa-trash"> </i> Delete</button>
+      <button type="button" class="btn taskButton btn-sm" (click)="modal.dismiss('Cross click')"><i class="fa fa-times"> </i> Cancel</button>
+    </div>
+  </ng-template>
+  <i class="fa fa-trash" (click)="open(content)"></i>

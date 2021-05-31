@@ -1,0 +1,88 @@
+<div class="row tasksDetails">
+    <div class="mr-auto">
+        <label for="dropdown">Show&nbsp;</label>
+        <select name="dropdown" id="dropdown" [(ngModel)]="config.itemsPerPage">
+            <option value="10" selected>10</option>
+            <option value="20" >20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+        entries
+    </div>
+    <div class="ml-auto">
+        <div class="form-row align-items-center">
+            <div class="col-auto">
+                <label for="orderBy">Order by: &nbsp;</label>
+                <select name="orderBy" id="orderBy" [(ngModel)]="orderConfig.selectOrder">
+                    <option value="Contact" selected>Contact Name</option>
+                    <option value="QuoteID" >Quote ID</option>
+                    <option value="QuoteType" >Quote Type</option>
+                    <option value="Task" >Task</option>
+                    <option value="TaskType" >Task Type</option>
+                    <option value="DueDate" >Due Date</option>
+                </select>
+                Descending
+                <input class="desc" type="checkbox" id="desc" (change)="descClicked($event)">
+                
+                <label for="search" class="ml-5">Search:</label>
+                <input type="text" id="search" class="ml-1" [(ngModel)]="filter"> 
+            </div>
+            <div class="col-auto">
+                
+            </div>
+        </div>
+        
+    </div>
+</div>  
+<div  *ngIf="isLoading" class="d-flex justify-content-center mt-5 pt-5 mb-5 pb-5">
+    <div class="spinner-border text-success" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>  
+</div>
+
+<table *ngIf="!isLoading" class="table table-hover tasksTable">
+    <thead>
+        <tr>
+            <th scope="col">Quote Type</th>
+            <th scope="col">Quote#</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Task</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Task Type</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let task of filteredTasks | paginate: config | orderBy : orderConfig.selectOrder ">
+            <td class="col-md-1">{{ task.QuoteType }}</td>
+            <td class="col-md-1">{{ task.QuoteID }}</td>
+            <td class="col-md-2">{{ task.Contact  }}</td>
+            <td class="col-md-4">{{ task.Task }}</td>
+            <td class="col-md-2">{{ task.DueDate | date: 'short' }}</td>
+            <td class="col-md-1">{{ task.TaskType }}</td>
+            <td class="col-md-1">
+                <app-view-task [task]="task"></app-view-task>&nbsp;<app-update-task [task]="task" [currentID]="task.QuoteID"></app-update-task>&nbsp;<app-delete-task [task]="task"></app-delete-task>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<hr style="border-style: solid;">
+<div class="row tasksDetails">
+    <div class="mr-auto">
+        <p>Showing {{(config.currentPage - 1) * config.itemsPerPage + 1}} to {{endCount(config.currentPage, config.itemsPerPage, totalTasks)}} of {{ totalTasks }} entries</p>
+    </div>
+    <div class="ml-auto">
+        <pagination-controls [id]="config.id"
+                    [maxSize]="maxSize"
+                    [directionLinks]="directionLinks"
+                    [autoHide]="autoHide"
+                    [responsive]="responsive"
+                    [previousLabel]="labels.previousLabel"
+                    [nextLabel]="labels.nextLabel"
+                    [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+                    [screenReaderPageLabel]="labels.screenReaderPageLabel"
+                    [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+                    (pageChange)="onPageChange($event)"
+                    (pageBoundsCorrection)="onPageBoundsCorrection($event)"></pagination-controls>
+    </div>
+</div>

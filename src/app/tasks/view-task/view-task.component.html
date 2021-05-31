@@ -1,0 +1,51 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">View Task</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group row pl-3">
+            <label for="" class="col-sm-4 col-form-label">Quote Type</label>
+            <div class="col-sm-6">
+                <p class="viewTask">{{ task.QuoteType }}</p>
+            </div>
+        </div>
+        <div class="form-group row pl-3">
+            <label for="" class="col-sm-4 col-form-label">Quote Num</label>
+            <div class="col-sm-6">
+                <p class="viewTask">{{ task.QuoteID }}</p>
+            </div>
+        </div>
+        <div class="form-group row pl-3">
+            <label for="" class="col-sm-4 col-form-label">Contact</label>
+            <div class="col-sm-6">
+                <p class="viewTask">{{ task.Contact }}</p>
+            </div>
+        </div>
+        <div class="form-group row pl-3">
+            <label for="" class="col-sm-4 col-form-label">Task</label>
+            <div class="col-sm-6">
+                <p class="viewTask">{{ task.Task }}</p>
+            </div>
+        </div>
+        <div class="form-group row pl-3">
+            <label for="" class="col-sm-4 col-form-label">Due Date</label>
+            <div class="col-sm-6">
+                <p class="viewTask">{{ task.DueDate | date: 'medium' }}</p>
+            </div>
+        </div>
+        <div class="form-group row pl-3">
+            <label for="" class="col-sm-4 col-form-label">Task Type</label>
+            <div class="col-sm-6">
+                <p class="viewTask">{{ task.TaskType }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-center">
+      <button type="submit" class="btn taskButton btn-sm" (click)="modal.close('Save click')"><a [routerLink]="['/tasks/', task.QuoteID]"><i class="fa fa-info-circle"> </i> Details</a></button>
+      <button type="button" class="btn btn-danger btn-sm" (click)="modal.dismiss('Cross click')"><i class="fa fa-times"> </i> Cancel</button>
+    </div>
+  </ng-template>
+  <i class="fa fa-eye" (click)="open(content)"></i>

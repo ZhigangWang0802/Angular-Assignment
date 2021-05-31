@@ -1,0 +1,50 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Register New User</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form #registerForm="ngForm" (ngSubmit)="submitRegister();">
+    <div class="modal-body">
+        <div class="d-flex justify-content-center m-5">
+          <img class="" src="assets/img/user.png" alt="https://www.vhv.rs/viewpic/ihbJmxw_task-management-hd-png-download/" width="100" height="100">
+        </div>
+        <div class="form-group row pl-3">
+            <label for="email" class="col-sm-4 col-form-label">Email</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control form-control-sm" id="email" #email="ngModel" [(ngModel)]="register.email" name="email" [email]="true" required>
+              <small *ngIf="!email.valid && email.touched" style="color:red !important" class="form-text text-muted">Required: (format: example@ple.com)</small>
+            </div>
+        </div>
+        <div class="form-group row pl-3">
+            <label for="password" class="col-sm-4 col-form-label">Password</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control form-control-sm" id="password" #password="ngModel" [(ngModel)]="register.password" name="password" required>
+              <small *ngIf="!password.valid && password.touched" style="color:red !important" class="form-text text-muted">Required</small>
+            </div>
+        </div>
+        <div class="form-group row pl-3">
+            <label for="confirmPassword" class="col-sm-4 col-form-label">Confirm Password</label>
+            <div class="col-sm-6">
+              <input type="password" class="form-control form-control-sm" id="confirmPassword" #confirmPassword="ngModel" [(ngModel)]="register.confirmPassword" name="confirmPassword" required>
+              <small *ngIf="!confirmPassword.valid && confirmPassword.touched" style="color:red !important" class="form-text text-muted">Required</small>
+              <small *ngIf="passwordValidator()" style="color:red !important" class="form-text text-muted">Passwords Didn't Match!!!</small>
+            </div>
+            
+        </div>
+    </div>
+    <div class="modal-footer justify-content-center">
+      <button type="submit" class="btn taskButton btn-sm" [disabled]="!registerForm.valid || passwordValidator()" (click)="modal.close('Save click')"><i class="fa fa-plus" > </i> Register</button>
+      <button type="button" class="btn btn-secondary btn-sm" (click)="modal.dismiss('Cross click')"><i class="fa fa-times"> </i> Cancel</button>
+    </div>
+  </form>
+  </ng-template>
+  <div class="alert alert-success" *ngIf="isSuccessful">
+    Your registration is successful! Please login now!
+  </div>
+  <div class="alert alert-warning" *ngIf="isSignUpFailed">
+    Registration Failed! Please try again!<br />{{ errorMessage }}
+  </div>
+  <button type="button" class="btn btn-sm btn-outline-info" (click)="open(content)">Sign up</button>
+  

@@ -1,0 +1,28 @@
+<body class="text-center" data-new-gr-c-s-loaded="9.29.0">
+    <main class="profile">
+        <div class="card" style="width: 25rem;">
+            <div class="card-header d-flex">
+                <div class="mr-auto">
+                    <p class="profileTitle">User Profile</p>
+                </div>
+                <div class="ml-auto">
+                    <button type="button" class="btn taskButton">
+                        <a [routerLink]="['/tasks']">
+                            <i class="fa fa-tasks"></i> Tasks
+                        </a>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <img class="" src="assets/img/userinfo.jpg" alt="https://www.vectorstock.com/royalty-free-vector/edit-info-people-user-icon-vector-20080647" width="120" height="120">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><span style="font-weight: bold;">Username: </span>{{ user.userName }}</li>
+                    <li class="list-group-item"><span style="font-weight: bold;">Token: </span>{{ user.access_token.substring(0, 20) }} ... {{user.access_token.length -20}}</li>
+                    <li class="list-group-item"><span style="font-weight: bold;">Token Issued: </span>{{tokenIssued | date: 'medium'}}</li>
+                    <li class="list-group-item"><span style="font-weight: bold;">Token Expires: </span>{{tokenExpires | date: 'medium'}}</li>
+                </ul><hr><br>
+                <button type="button" class="btn btn-danger" (click)="submitSignOut()">Sign Out</button>
+            </div>
+      </div>
+    </main>
+  </body>

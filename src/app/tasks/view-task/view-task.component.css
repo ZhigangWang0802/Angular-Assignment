@@ -1,0 +1,33 @@
+.taskButton {
+    background-color: #4CCCB4;
+    color: whitesmoke;
+}
+.modal-header {
+    background-color: rgb(33, 119, 232);
+    color: whitesmoke;
+    height: 4em;
+}
+.modal-title {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+.modal-body {
+    font-weight: 500;
+    font-size: 1em;
+}
+.changeSize  {
+    height: 1em;
+    margin-top: -25px;
+    display: block;
+    font-size: 1em !important;
+  }
+  .viewTask {
+      background-color: rgb(239, 252, 247);
+      border-radius: 5%;
+      height: auto;
+      padding: 10px;
+  }
+  .taskButton a{
+      text-decoration: none !important;
+      color: whitesmoke;
+  }

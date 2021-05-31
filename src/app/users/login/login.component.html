@@ -1,0 +1,29 @@
+<body class="text-center" data-new-gr-c-s-loaded="9.29.0">
+  <main class="form-signin">
+    <form #loginForm="ngForm" (ngSubmit)="submitLogin();">
+      <img class="mb-4" src="assets/img/logo.png" alt="https://www.vhv.rs/viewpic/ihbJmxw_task-management-hd-png-download/" width="100" height="100">
+      <i class="fa fa-bring-front mb-4" width="72" height="57"></i>
+      <h1 class="h3 mb-3 fw-normal">Task Management System</h1><hr>
+      <input type="email" id="inputEmail" class="form-control-sm form-control" #email="ngModel" [(ngModel)]="login.username" name="email" [email]="true" placeholder="Email address" required>
+      <small *ngIf="!email.valid && email.touched" style="color:red !important" class="form-text text-muted">Required: (format: example@ple.com)</small>
+      <br/>
+      <input type="password" id="inputPassword" class="form-control form-control-sm" #password="ngModel" [(ngModel)]="login.password" name="password" placeholder="Password" required="">
+      <small *ngIf="!password.valid && password.touched" style="color:red !important" class="form-text text-muted">Required</small>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="isLoginFailed"
+        >
+          Login Failed: Username or Password is wrong!
+        </div>
+      </div>
+      <app-register></app-register>
+      <button class="btn btn-sm btn-success ml-3" type="submit" [disabled]="!loginForm.valid">Sign in</button>
+      <p class="mt-5 mb-3 text-muted">© {{date.getFullYear()}}</p>
+    </form>
+  </main>
+</body>

@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row topHeader">
+        <div class="mr-auto">
+            <p class="pageTitle">
+                <a [routerLink]="['/profile']">
+                    {{ pageTitle }}
+                </a>    
+            </p>
+        </div>
+        <div class="ml-auto">
+            <app-add-task></app-add-task>
+        </div>
+    </div>
+    <app-task-data></app-task-data>
+</div>

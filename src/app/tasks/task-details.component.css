@@ -1,0 +1,11 @@
+.topHeader {
+    margin-bottom: 10px;
+    background-color: rgb(214, 213, 213);
+    padding: 0px 20px;
+}
+.pageTitle {
+    color: rgb(33, 119, 232);
+    margin: 5px 0px;
+    font-size: 1.2em;
+    font-weight: 500;
+}

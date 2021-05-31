@@ -1,0 +1,85 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Create Task</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #createForm="ngForm">
+        <div class="form-group row pl-3">
+            <label for="inputStatus" class="col-sm-2 col-form-label">Status</label>
+            <div class="col-sm-6">
+                <select class="form-control form-control-sm" id="inputStatus">
+                    <option>Open</option>
+                    <option>Close</option>
+                  </select>
+            </div>
+        </div>
+        <div class="form-group row pl-3">
+            <label for="QuoteType" class="col-sm-2 col-form-label">Quote Type</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control form-control-sm" id="QuoteType" #QuoteType="ngModel" [(ngModel)]="task.QuoteType" name="QuoteType" required>
+              <small *ngIf="!QuoteType.valid && QuoteType.touched" style="color:red !important" class="form-text text-muted">Required</small>
+            </div>
+            <label class="pt-1">Quote Num</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control form-control-sm ml-0" id="QuoteNum" #QuoteID="ngModel" [(ngModel)]="task.QuoteID" name="QuoteID" required>
+                <small *ngIf="!QuoteID.valid && QuoteID.touched" style="color:red !important" class="form-text text-muted">Required</small> 
+            </div>
+        </div>
+        <div class="form-group row pl-3">
+            <label for="TaskType" class="col-sm-2 col-form-label">Task Type</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control form-control-sm" id="TaskType" #TaskType="ngModel" [(ngModel)]="task.TaskType" name="TaskType" required>
+              <small *ngIf="!TaskType.valid && TaskType.touched" style="color:red !important" class="form-text text-muted">Required</small>
+            </div>
+        </div>
+        <div class="form-group row pl-3">
+            <label for="ContactName" class="col-sm-2 col-form-label">Contact Name</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control form-control-sm" id="ContactName" #Contact="ngModel" [(ngModel)]="task.Contact" name="Contact" required>
+              <small *ngIf="!Contact.valid && Contact.touched" style="color:red !important" class="form-text text-muted">Required</small>
+            </div>
+        </div>
+        <div class="form-group row pl-3">
+            <label for="Task" class="col-sm-2 col-form-label">Quote</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control form-control-sm" id="Task" #Task="ngModel" [(ngModel)]="task.Task" name="Task" required>
+              <small *ngIf="!Task.valid && Task.touched" style="color:red !important" class="form-text text-muted">Required</small>
+            </div>
+        </div>
+        <br>
+        <div class="form-group row pl-3" ngModelGroup #DueDate="ngModelGroup">
+            <label for="inputDueDate" class="col-sm-2 col-form-label">Due Date</label>
+            <div class="input-group col-sm-6">
+    
+                <input class="form-control" placeholder="yyyy-mm-dd" name="Date" format="dd/mm/yyyy" #Date="ngModel" [(ngModel)]="task.Date" ngbDatepicker #d="ngbDatepicker" required>
+                
+                <div class="input-group-append">
+                  <button class="btn calendar btn-outline-secondary" (click)="d.toggle()" type="button">📅</button>
+                  
+                </div>
+                <ngb-timepicker class="changeSize pl-1" size="small" name="Time" #Time="ngModel" [meridian]="true" [(ngModel)]="task.Time" [ngModelOptions]="{standalone: true}"></ngb-timepicker>
+              </div>
+              <div>
+                <small *ngIf="!Date.valid && Date.touched" style="color:red !important" class="form-text text-muted">Required</small>
+              </div>
+        </div><br>
+        <div class="form-group">
+            <label for="inputTaskDescription">Task Description</label>
+            <textarea class="form-control form-control-sm" id="inputTaskDescription" rows="3">
+              {{ task.QuoteType }} {{ task.QuoteID }} {{ task.Contact }} {{ task.Task }} {{ task.Date.year}} {{ task.Date.month }} {{ task.TaskType }}
+            </textarea>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn taskButton btn-sm" [disabled]="!createForm.valid" (click)="submitCreateTask(); modal.close('Save click')"><i class="fa fa-save"> </i> Save</button>
+      <button type="button" class="btn taskButton btn-sm" (click)="modal.dismiss('Cross click')"><i class="fa fa-times"> </i> Cancel</button>
+    </div>
+</ng-template>
+  
+<button type="button" class="btn taskButton btn-sm" (click)="open(content)">
+    <i class="fa fa-tasks"> </i> Add Task
+</button>
