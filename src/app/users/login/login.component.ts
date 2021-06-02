@@ -22,14 +22,14 @@ export class LoginComponent implements OnInit{
   ngOnInit(): void {
     if(this.tokenService.getToken()) {
       this.isLoggedIn = true;
-      this.router.navigate(['profile'])
+      this.router.navigate(['/tasks/'])
     }
   }
 
   submitLogin() {
     this.authService.login(this.login)
     .subscribe((user) => {
-      this.router.navigate(['profile'])
+      this.router.navigate(['/tasks/'])
       this.tokenService.saveToken(user.access_token);
       this.tokenService.saveUser(user);
       

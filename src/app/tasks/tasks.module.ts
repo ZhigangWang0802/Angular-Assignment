@@ -6,7 +6,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgPipesModule } from 'ngx-pipes';
-import { ProfileGuard } from '../services/profile.guard';
 import { TaskDetailGuard } from '../services/task-detail.guard';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { TaskDataComponent } from './data-task/task-data.component';
@@ -18,8 +17,8 @@ import { ViewTaskComponent } from './view-task/view-task.component';
 
 
 const routes: Routes = [
-  { path: 'tasks', canActivate: [ProfileGuard], component: TaskDetailsComponent },
-  { path: 'tasks/:id', canActivate: [ProfileGuard, TaskDetailGuard], component: DetailedTaskComponent },
+  { path: 'tasks',  component: TaskDetailsComponent },
+  { path: 'tasks/:id', canActivate: [TaskDetailGuard], component: DetailedTaskComponent },
 ]
 
 @NgModule({
