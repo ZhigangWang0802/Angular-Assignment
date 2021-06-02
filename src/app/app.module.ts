@@ -14,7 +14,7 @@ import { TasksModule } from './tasks/tasks.module';
 @NgModule({
   declarations: [
     AppComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
   ],
   imports: [
     BrowserModule,

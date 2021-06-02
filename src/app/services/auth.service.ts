@@ -8,7 +8,7 @@ import { catchError, tap } from 'rxjs/operators';
 })
 export class AuthService {
   private authUrl = "https://localhost:44358/token";
-  private userUrl = "https://localhost:44358/api/Account";
+  private userUrl = "https://localhost:44358/api/account";
   
   constructor(private http: HttpClient) { }
   
@@ -19,10 +19,10 @@ export class AuthService {
   }
   register(register) {
     var data="Email=" + register.email + "&Password=" + register.password + "&confirmPassword=" + register.confirmPassword;
-    return this.http.post(`${this.userUrl}/Register`, data, httpOptions);
+    return this.http.post(`${this.userUrl}/register`, data, httpOptions);
   }
   signout(): Observable<any> {
-    return this.http.post(`${this.userUrl}/Logout`, httpOptions);
+    return this.http.post(`${this.userUrl}/logout`, httpOptions);
   }
 
   private handleError(err: HttpErrorResponse) {

@@ -18,8 +18,8 @@ import { ViewTaskComponent } from './view-task/view-task.component';
 
 
 const routes: Routes = [
-  { path: 'tasks', /* canActivate: [ProfileGuard], */ component: TaskDetailsComponent },
-  { path: 'tasks/:id', /* canActivate: [ProfileGuard, TaskDetailGuard], */ component: DetailedTaskComponent },
+  { path: 'tasks', canActivate: [ProfileGuard], component: TaskDetailsComponent },
+  { path: 'tasks/:id', canActivate: [ProfileGuard, TaskDetailGuard], component: DetailedTaskComponent },
 ]
 
 @NgModule({

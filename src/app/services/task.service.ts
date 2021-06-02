@@ -9,7 +9,7 @@ import { TokenService } from './token.service';
   providedIn: 'root'
 })
 export class TaskService {
-  private taskUrl = "https://localhost:44358/api/values";
+  private taskUrl = "https://localhost:44358/api/values/";
 
   constructor(private http: HttpClient, private tokenService: TokenService) { }
 
